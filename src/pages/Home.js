@@ -8,7 +8,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadUsers } from '../redux/action';
+import { loadUsers, UserDelete } from '../redux/action';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import { useNavigate } from 'react-router-dom';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -33,19 +36,28 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const Home = () => {
     let dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const data = useSelector((state) => state.data.users)
-    console.log("data", data);
+    // console.log("data", data);
     useEffect(() => {
         dispatch(loadUsers());
     }, []);
+
+    const handelDelete = (id) => {
+        dispatch(UserDelete(id))
+    }
     return (
         <div>
+            <div style={{marginTop:60,textAlign:'end',marginRight:35}}>
+                <Button variant="contained" onClick={() => navigate('addUser')}>User Add</Button>
+            </div>
             <TableContainer component={Paper}>
-                <Table style={{ marginTop: 100 }} sx={{ minWidth: 900 }} aria-label="customized table">
+                <Table style={{ marginTop: 30 }} sx={{ minWidth: 900 }} aria-label="customized table">
                     <TableHead>
                         <TableRow>
-                            <StyledTableCell>Name</StyledTableCell>
+                            <StyledTableCell>Index</StyledTableCell>
+                            <StyledTableCell align="center">Name</StyledTableCell>
                             <StyledTableCell align="center">Email</StyledTableCell>
                             <StyledTableCell align="center">Contact</StyledTableCell>
                             <StyledTableCell align="center">Address</StyledTableCell>
@@ -53,15 +65,21 @@ const Home = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        { data && data.map((user) => (
+                        {data && data.map((user, index) => (
                             <StyledTableRow key={user.id}>
                                 <StyledTableCell component="th" scope="row">
-                                    {user.name}
+                                    {index + 1}
                                 </StyledTableCell>
+                                <StyledTableCell align="center">{user.name}</StyledTableCell>
                                 <StyledTableCell align="center">{user.email}</StyledTableCell>
                                 <StyledTableCell align="center">{user.contact}</StyledTableCell>
                                 <StyledTableCell align="center">{user.address}</StyledTableCell>
-                                <StyledTableCell align="center"></StyledTableCell>
+                                <StyledTableCell align="center">
+                                    <ButtonGroup variant="contained" aria-label="contained button">
+                                        <Button style={{ marginRight: '5px' }} color="error" onClick={() => handelDelete(user.id)}>Delete</Button>
+                                        <Button onClick={() => navigate(`editUser/${user.id}`)}>Edit</Button>
+                                    </ButtonGroup>
+                                </StyledTableCell>
                             </StyledTableRow>
                         ))}
                     </TableBody>

@@ -1,4 +1,4 @@
-import { GET_USERS } from "./actionType";
+import { ADD_USER, DELETE_USERS, GET_USERS } from "./actionType";
 
 const initialState = {
     users:[],
@@ -13,6 +13,12 @@ const userReducer= (state = initialState , action) => {
                 ...state,
                 users:action.payload,
                 loader:false,
+            }
+        case DELETE_USERS:
+        case ADD_USER:
+            return{
+                ...state,
+                loader:false
             }
         default:
             return state;
