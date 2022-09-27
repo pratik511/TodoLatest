@@ -2,17 +2,24 @@
   "user": [
     {
       "id": 3,
-      "name": "Pratik",
+      "name": "Pratik111111",
       "address": "Surat",
       "email": "123@gmail.com",
-      "contact": 1234567890
+      "contact": "1234567890454545"
     },
     {
-      "name": "1111",
-      "email": "1111",
-      "contact": "1111",
-      "address": "111111",
+      "name": "1111dfgfdgfdgfdwwww",
+      "email": "1111fgfgfgffdgfdg",
+      "contact": "111154556565",
+      "address": "111111fgfdgfdgdf",
       "id": 4
+    },
+    {
+      "name": "erte",
+      "email": "terre",
+      "contact": "434343",
+      "address": "4rsdr534w5rwer",
+      "id": 5
     }
   ]
 }

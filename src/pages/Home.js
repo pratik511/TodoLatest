@@ -77,7 +77,7 @@ const Home = () => {
                                 <StyledTableCell align="center">
                                     <ButtonGroup variant="contained" aria-label="contained button">
                                         <Button style={{ marginRight: '5px' }} color="error" onClick={() => handelDelete(user.id)}>Delete</Button>
-                                        <Button onClick={() => navigate(`editUser/${user.id}`)}>Edit</Button>
+                                        <Button onClick={() => navigate(`addUser/${user.id}`)}>Edit</Button>
                                     </ButtonGroup>
                                 </StyledTableCell>
                             </StyledTableRow>
